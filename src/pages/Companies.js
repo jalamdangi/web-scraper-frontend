@@ -11,7 +11,7 @@ const Companies = () => {
   useEffect(() => {
     const fetchCompanies = async () => {
       try {
-        const { data } = await axios.get("http://localhost:5000/api/companies");
+        const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/api/companies`);
         setCompanies(data);
       } catch (err) {
         console.error(err);
@@ -28,7 +28,7 @@ const Companies = () => {
 
   const deleteSelectedCompanies = async () => {
     try {
-      await axios.post("http://localhost:5000/api/companies/delete", { ids: selectedCompanies });
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/companies/delete`, { ids: selectedCompanies });
       setCompanies((prev) => prev.filter((company) => !selectedCompanies.includes(company._id)));
       setSelectedCompanies([]);
     } catch (err) {
@@ -91,7 +91,7 @@ const Companies = () => {
                 <td className="p-2 flex cursor-pointer">
                   <img
                     onClick={() => navigate(`/company/${company._id}`)}
-                    src={`http://localhost:5000/${company.logo || company.screenshot}`}
+                    src={`${process.env.REACT_APP_API_URL}/${company.logo || company.screenshot}`}
                     alt=""
                     className="w-10 h-10 object-contain"
                   />

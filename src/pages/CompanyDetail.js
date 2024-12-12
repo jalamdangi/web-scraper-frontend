@@ -9,7 +9,7 @@ const CompanyDetails = () => {
   useEffect(() => {
     const fetchCompanyDetails = async () => {
       try {
-        const { data } = await axios.get(`http://localhost:5000/api/companies/${id}`);
+        const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/api/companies/${id}`);
         setCompany(data);
       } catch (error) {
         console.error("Error fetching company details:", error);
@@ -49,7 +49,7 @@ const CompanyDetails = () => {
       </div>
       <h2 className="text-2xl font-semibold text-gray-800 mb-4">Webpage Screenshot</h2>
       <img
-        src={`http://localhost:5000/${company.screenshot}`}
+        src={`${process.env.REACT_APP_API_URL}/${company.screenshot}`}
         alt="Webpage Screenshot"
         className="w-full max-h-96 object-contain border border-gray-300 rounded-md"
       />

@@ -10,7 +10,7 @@ const Home = () => {
   const scrapeData = async () => {
     try {
       setScrapping(true)
-      const { data } = await axios.post("http://localhost:5000/api/companies/scrape", { url });
+      const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/api/companies/scrape`, { url });
       // console.log("Scraped Data:", data);
       if (data) navigate("/companies")
     } catch (err) {
