@@ -12,10 +12,10 @@ const Home = () => {
       setScrapping(true)
       const { data } = await axios.post("http://localhost:5000/api/companies/scrape", { url });
       // console.log("Scraped Data:", data);
-      navigate("/companies")
+      if (data) navigate("/companies")
     } catch (err) {
       console.error(err);
-      alert(err.message || "Unable to scraped!")
+      alert(err.message || "Unable to scrape site data !")
     }
     setScrapping(false)
   };
